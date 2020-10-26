@@ -1,0 +1,21 @@
+{
+  "name": "sap_aut_receiver",
+  "version": "1.0.0",
+  "description": "SAP AUT Websocket Receiver",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "SAP",
+    "AUT",
+    "Websocket",
+    "Receiver"
+  ],
+  "author": "Jason",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.3.1"
+  }
+}
