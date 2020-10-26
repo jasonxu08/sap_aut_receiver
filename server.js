@@ -20,7 +20,7 @@ var sapAutService = {
         });
     },
 
-    onConnection: function(webSocketClient) {
+    onConnection: function(webSocketClient) { 
         // read test.json to memory
 
         //send feedback to the incoming connection
