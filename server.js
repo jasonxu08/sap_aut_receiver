@@ -3,9 +3,9 @@ const serverPort = 3000,
     express = require("express"),
     app = express(),
     server = http.createServer(app),
-    WebSocket = require("ws");
+    WebSocket = require("ws"),
+    dataStorage = require("./data_storage");
 
-var fs = require("fs");
 
 var sapAutService = {
     init: function() {
@@ -22,6 +22,7 @@ var sapAutService = {
 
     onConnection: function(webSocketClient) { 
         // read test.json to memory
+        dataStorage.initData();
 
         //send feedback to the incoming connection
         webSocketClient.send('{ "connection" : "ok1"}');
@@ -30,44 +31,11 @@ var sapAutService = {
     },
 
     onMessage: function(message) {
-        var msgObj = JSON.parse(message);
-        if (!sapAutService.messageValidation(msgObj))
-            return;
-        // check hash
-        // add to memory
 
-        fs.writeFile("test.json", message, function(err) {
-            console.log("error!");
-        });
+        dataStorage.saveData(message);
     },
 
-    /* Should be like 
-    {
-        "type": "",
-        "hash": "",
-        "attribute": {
-        "name": "",
-        "value": ""
-        },
-        "url": "",
-        "browser": {
-        "type": "",
-        "version": ""
-        }
-    } */
-    messageValidation: function(message) {
-        if (typeof message != "object" || typeof message.type != "string" || typeof message.hash != "string")
-            return false;
-        if (typeof message.attribute == "object") {
-            if (typeof message.attribute.name != "string" || typeof message.attribute.value != "string")
-                return false;
-        }
-        if (typeof message.browser == "object") {
-            if (typeof message.browser.type != "string" || typeof message.browser.version != "string")
-                return false;
-        }
-        return true;
-    }
+
     
 }
 
