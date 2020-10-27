@@ -50,6 +50,7 @@ var dataStorage = {
 
         this.autData.addAut(msgObj);
 
+        this.write(JSON.stringify(this.autData));
     },
 
     /* Should be like 
@@ -69,6 +70,7 @@ var dataStorage = {
             return false;
         }
 
+        // Tolerate properties to be null
         if (message.properties != null && !this.propertiesValidation(message.properties))
             return false;
 
@@ -98,6 +100,11 @@ var dataStorage = {
     append: function (data) {
         fs.appendFile(filename, data, function (err) {
             console.log("appendFile!");
+        });
+    },
+    write: function (data) {
+        fs.writeFile(filename, data, function (err) {
+            console.log("writeFile!");
         });
     },
 }
