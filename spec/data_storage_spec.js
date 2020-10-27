@@ -46,5 +46,52 @@ describe("Test data storage", function () {
             }));
 
         });
+
+        it("should successfully run mergeAuts", function () {
+            data_storage.autData["hash"] = {
+                "hash": "hash",
+                "properties": {
+                    "name1": "value1",
+                    "name2": "value2"
+                }
+            };
+            var auts =
+            {
+                "hash": {
+                    "hash": "hash",
+                    "properties": {
+                        "name1": "new value",
+                        "name3": "new value"
+                    }
+                },
+                "new hash": {
+                    "hash": "new hash",
+                    "properties": {
+                        "name1": "value1",
+                        "name3": "value3"
+                    }
+                }
+            };
+
+            data_storage.autData.mergeAuts(auts);
+            expect(JSON.stringify(data_storage.autData)).toEqual(JSON.stringify({
+                "hash": {
+                    "hash": "hash",
+                    "properties": {
+                        "name1": "new value",
+                        "name2": "value2",
+                        "name3": "new value"
+                    }
+                },
+                "new hash": {
+                    "hash": "new hash",
+                    "properties": {
+                        "name1": "value1",
+                        "name3": "value3"
+                    }
+                }
+            }));
+
+        });
     });
 });
