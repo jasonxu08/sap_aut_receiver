@@ -1,6 +1,6 @@
 
 
-var sapAutService = require("./server");
+var sapAutService = require("./src/server");
 
 
 sapAutService.init();

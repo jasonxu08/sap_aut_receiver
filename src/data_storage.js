@@ -17,18 +17,23 @@ var dataStorage = {
             }.bind(this));
         },
         addProperty: function (hashKey, propertyToAdd) {
-            var property = this[hashKey].properties.find(function (property) {
-                return property.name == propertyToAdd.name;
-            });
+            var property = this.findProperty(this[hashKey].properties, propertyToAdd);
             if (property != null) {
                 property.value = propertyToAdd.value;
             } else {
                 this[hashKey].properties.push(propertyToAdd);
             }
+        }, 
+        findProperty: function(properties, propertyToFind) {
+            return properties.find(function (property) {
+                return property.name == propertyToFind.name;
+            });
         }
     },
     initData: function () {
         this.read(function(rawData) {
+            if (rawData == null)
+                rawData = "";
             try {
                 rawData = JSON.parse("{\"data\": [" + rawData + "]}");
             } catch (err) {
