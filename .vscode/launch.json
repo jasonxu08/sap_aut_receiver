@@ -10,11 +10,8 @@
             "request": "launch",
             "type": "node",
             "args": [
-                "spec\\data_storage_spec.js"
-            ],
-            "env": {
-                "NODE_PATH": "."
-            }
+                "**/*[sS]pec.js"
+            ]
         },
         {
             "type": "node",
