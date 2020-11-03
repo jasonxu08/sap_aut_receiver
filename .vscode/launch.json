@@ -21,6 +21,15 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\main.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch REST",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\src\\rest_service.js"
         }
     ]
 }

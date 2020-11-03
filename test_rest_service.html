@@ -1,0 +1,25 @@
+<html>
+    <script>
+        const postAut = async () => {
+  const response = await fetch('http://localhost:3000/postAUT', {
+    method: 'POST',
+    body: myBody, // string or object
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const myJson = await response.json(); //extract JSON from the http response
+  // do something with myJson
+}
+
+const getAut = async () => {
+  const response = await fetch('http://localhost:3000/getAUTsByType?type=SAPEdit');
+  const myJson = await response.json(); //extract JSON from the http response
+  // do something with myJson
+  alert(myJson);
+}
+    </script>
+    <body onload="getAut()">
+
+    </body>
+</html>
